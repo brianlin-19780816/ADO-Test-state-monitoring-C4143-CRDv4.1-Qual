@@ -4,7 +4,7 @@ Azure DevOps Rack Test Status Dashboard 提供 Tampermonkey userscript 與原生
 
 ## 目前版本
 
-- Dashboard：[C4143-DVScale-Dashboard.user.js](./C4143-DVScale-Dashboard.user.js)（固定安裝網址，腳本內版本 v1.10.0）
+- Dashboard：[C4143-DVScale-Dashboard.user.js](./C4143-DVScale-Dashboard.user.js)（固定安裝網址，腳本內版本 v1.11.0）
 - 開發與維護文件：[C4143-DVScale-Dashboard-HANDOFF.md](./C4143-DVScale-Dashboard-HANDOFF.md)
 - Azure DevOps Extension：[azure-devops-extension](./azure-devops-extension)；可安裝 VSIX 位於 `release/C4143-DVScale-Dashboard-Extension.vsix`
 - Azure DevOps organization：`https://azurecsi.visualstudio.com`
@@ -12,10 +12,11 @@ Azure DevOps Rack Test Status Dashboard 提供 Tampermonkey userscript 與原生
 
 ## 多專案 Query 選單
 
-v1.10.0 在頂端控制列新增 **Query** 選單，內建以下兩個唯讀資料來源：
+v1.11.0 的預設唯讀資料來源為 Azure DevOps Test Plan：
 
-- `C4143_DV-Scale`：`9254024e-6a97-44ed-953b-1aa07d38fb48`
-- `[EchoFalls][C4142][PSE] EVT - Scale Testing`：`6e06c765-2ff5-43c4-80c6-e78438eea6d9`
+- 名稱：`C4143_CRDv4.1 Qual`
+- URL：`https://azurecsi.visualstudio.com/Dev/_testPlans/charts?planId=2783433&suiteId=3942624`
+- Dashboard 會辨識所選分支下的六個 Test Suite，並遞迴讀取每個 Suite 的所有子階層與 Test Points。
 
 選擇另一個 Query 後，Dashboard 會重新執行該 Query，並以相同的 Overview、Rack、Insights、Test Features 與匯出格式呈現。標題、來源連結、Work Item hyperlinks 與匯出檔名也會同步改成目前選擇的 Query。
 
@@ -100,8 +101,8 @@ Azure DevOps Query 有更新時，資料是由 Dashboard 在下一次載入、�
 固定入口的 userscript 已包含：
 
 ```text
-@updateURL   https://raw.githubusercontent.com/alan512627/azure-devops-state-monitoring/main/C4143-DVScale-Dashboard.user.js
-@downloadURL https://raw.githubusercontent.com/alan512627/azure-devops-state-monitoring/main/C4143-DVScale-Dashboard.user.js
+@updateURL   https://raw.githubusercontent.com/brianlin-19780816/ADO-Test-state-monitoring-C4143-CRDv4.1-Qual/main/C4143-DVScale-Dashboard.user.js
+@downloadURL https://raw.githubusercontent.com/brianlin-19780816/ADO-Test-state-monitoring-C4143-CRDv4.1-Qual/main/C4143-DVScale-Dashboard.user.js
 ```
 
 第一次由固定入口安裝後，Tampermonkey 會依自己的更新檢查間隔讀取 GitHub 上的 `@version`；當 repository 的版本號提高時，它會下載並取代已安裝版本。更新完成後，重新整理 Azure DevOps 頁面就會執行新版，不需要再次 Import。
