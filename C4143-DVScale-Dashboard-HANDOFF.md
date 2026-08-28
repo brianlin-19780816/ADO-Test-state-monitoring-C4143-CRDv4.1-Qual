@@ -1,11 +1,11 @@
-# C4143 DV-Scale Rack Test Status Dashboard — 開發紀錄與交接文件
+# C4143 CRDv4.1 Qual Test Status Dashboard — 開發紀錄與交接文件
 
 | 項目 | 內容 |
 | --- | --- |
 | 文件版本 | 2.1 |
 | 初版日期 | 2026-07-28 |
-| 最後更新 | 2026-08-21 |
-| 最新腳本 | `C4143-DVScale-Dashboard.user.js`（v1.10.0） |
+| 最後更新 | 2026-08-28 |
+| 最新腳本 | `C4143-DVScale-Dashboard.user.js`（v1.11.0） |
 | 最新腳本大小 | 141610 bytes（約 138.3 KB） |
 | 執行環境 | Chrome + Tampermonkey，需已登入 Azure DevOps（azurecsi） |
 
@@ -78,9 +78,11 @@ localStorage（origin `https://azurecsi.visualstudio.com`）使用到的 key：
 | --- | --- |
 | Organization | `azurecsi`（`https://azurecsi.visualstudio.com`） |
 | Project | `Dev` |
-| Query 名稱 | `C4143_DV-Scale` |
-| Query ID | `9254024e-6a97-44ed-953b-1aa07d38fb48` |
-| Query 頁面 | `https://azurecsi.visualstudio.com/Dev/_testPlans/charts?planId=3823389&suiteId=3823390` |
+| Test Plan 名稱 | `C4143_CRDv4.1 Qual` |
+| Test Plan ID | `2783433` |
+| Selected Suite ID | `3942624` |
+| Test Plan 頁面 | `https://azurecsi.visualstudio.com/Dev/_testPlans/charts?planId=2783433&suiteId=3942624` |
+| Dashboard 分組 | 所選分支下的六個 Test Suite；每組遞迴包含全部子階層 |
 
 v1.10.0 另內建第二個 Query：
 
@@ -557,14 +559,14 @@ Suite 清單與每櫃基準測項數：Enumeration 26、IFWI 2、BMC 2、Mantico
 
 固定 Raw URL：
 
-`https://raw.githubusercontent.com/alan512627/azure-devops-state-monitoring/main/C4143-DVScale-Dashboard.user.js`
+`https://raw.githubusercontent.com/brianlin-19780816/ADO-Test-state-monitoring-C4143-CRDv4.1-Qual/main/C4143-DVScale-Dashboard.user.js`
 
 ### 15.2 Userscript metadata
 
 ```text
 @version      1.7.1
-@updateURL    https://raw.githubusercontent.com/alan512627/azure-devops-state-monitoring/main/C4143-DVScale-Dashboard.user.js
-@downloadURL  https://raw.githubusercontent.com/alan512627/azure-devops-state-monitoring/main/C4143-DVScale-Dashboard.user.js
+@updateURL    https://raw.githubusercontent.com/brianlin-19780816/ADO-Test-state-monitoring-C4143-CRDv4.1-Qual/main/C4143-DVScale-Dashboard.user.js
+@downloadURL  https://raw.githubusercontent.com/brianlin-19780816/ADO-Test-state-monitoring-C4143-CRDv4.1-Qual/main/C4143-DVScale-Dashboard.user.js
 ```
 
 Tampermonkey 會按設定的更新間隔讀取固定 URL，比較 `@version`，發現較新版本後下載並更新。更新完成後，下一次開啟或重新整理 Azure DevOps 即執行新版。
