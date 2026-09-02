@@ -4,7 +4,7 @@ Azure DevOps Rack Test Status Dashboard 提供 Tampermonkey userscript 與原生
 
 ## 目前版本
 
-- Dashboard：[C4143-CRD4.1-Dashboard.user.js](./C4143-CRD4.1-Dashboard.user.js)（固定安裝網址，腳本內版本 v1.11.3）
+- Dashboard：[C4143-CRD4.1-Dashboard.user.js](./C4143-CRD4.1-Dashboard.user.js)（固定安裝網址，腳本內版本 v1.11.4）
 - 開發與維護文件：[C4143-DVScale-Dashboard-HANDOFF.md](./C4143-DVScale-Dashboard-HANDOFF.md)
 - Azure DevOps Extension：[azure-devops-extension](./azure-devops-extension)；可安裝 VSIX 位於 `release/C4143-DVScale-Dashboard-Extension.vsix`
 - Azure DevOps organization：`https://azurecsi.visualstudio.com`
@@ -31,7 +31,7 @@ https://dev.azure.com/{organization}/{project}/_queries/query/{query-id}/
 
 ## CRDv4.1 Qual 六個 Test Suite
 
-v1.11.3 將 Test Suite 比較直條圖的 X 軸改為簡短標籤（例如 `PSE LM`、`SENV HH`）；完整 Suite 名稱仍保留在圖表滑鼠提示中。
+v1.11.4 將 Test Suite 比較直條圖的 X 軸改為簡短標籤（例如 `PSE LM`、`SENV HH`）；完整 Suite 名稱仍保留在圖表滑鼠提示中。
 
 ## Test Features 分頁
 
