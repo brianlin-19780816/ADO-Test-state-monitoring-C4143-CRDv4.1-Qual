@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         C4143 CRDv4.1 Qual Test Status Dashboard
 // @namespace    local.ado.dvscale.dashboard
-// @version      1.11.3
+// @version      1.11.4
 // @description  Adds a multi-project Query selector, real Test Results, XLSX exports, query-scoped snapshots, and Extension support.
 // @homepageURL  https://github.com/brianlin-19780816/ADO-Test-state-monitoring-C4143-CRDv4.1-Qual
 // @supportURL   https://github.com/brianlin-19780816/ADO-Test-state-monitoring-C4143-CRDv4.1-Qual/issues
@@ -883,10 +883,12 @@
   D.stacked = function (labels, perRack, states) {
     function shortSuiteLabel(label, index) {
       var parts = String(label || '').split(/[_\s-]+/).filter(Boolean);
-      var family = parts[0] || ('Suite ' + (index + 1));
-      var config = parts.filter(function (part) { return /^(LM|MM|HH)$/i.test(part); })[0] || '';
-      var shortLabel = config ? (family + ' ' + config.toUpperCase()) : ('Suite ' + (index + 1));
-      return shortLabel.length > 14 ? ('Suite ' + (index + 1)) : shortLabel;
+      var config = parts.filter(function (part) { return /^(LM|MM|HH)$/i.test(part); })[0];
+      var variant = parts.filter(function (part) { return /^(GN|AC)$/i.test(part); })[0];
+      var fallbackConfigs = ['LM', 'LM', 'MM', 'MM', 'HH', 'HH'];
+      config = String(config || fallbackConfigs[index] || ('S' + (index + 1))).toUpperCase();
+      variant = String(variant || (index % 2 ? 'AC' : 'GN')).toUpperCase();
+      return config + ' ' + variant;
     }
     var W = 460, H = 300, L = 40, B = 40, T = 14, Rp = 12;
     var s = D.svg('svg', { viewBox: '0 0 ' + W + ' ' + H, width: '100%', height: '100%', preserveAspectRatio: 'xMidYMid meet' });
