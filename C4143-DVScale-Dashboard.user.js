@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         C4143 CRDv4.1 Qual Test Status Dashboard
 // @namespace    local.ado.dvscale.dashboard
-// @version      1.11.0
+// @version      1.11.1
 // @description  Adds a multi-project Query selector, real Test Results, XLSX exports, query-scoped snapshots, and Extension support.
 // @homepageURL  https://github.com/brianlin-19780816/ADO-Test-state-monitoring-C4143-CRDv4.1-Qual
 // @supportURL   https://github.com/brianlin-19780816/ADO-Test-state-monitoring-C4143-CRDv4.1-Qual/issues
@@ -14,8 +14,8 @@
 
 /* ------------------------------------------------------------------
  How to use
-  1) Install Tampermonkey, import this file, then open (bookmark it; #dvdash is optional):
-     https://azurecsi.visualstudio.com/_apis/projects?api-version=6.0#dvdash
+  1) Install Tampermonkey, import this file, then open the dedicated CRDv4.1 Qual entry:
+     https://azurecsi.visualstudio.com/_apis/projects?api-version=6.0#crdv41qual
     Every open or F5 refresh re-runs the query and redraws the dashboard.
 
  2) Data source modes (dropdown at the top left; your choice is saved in localStorage):
@@ -54,8 +54,7 @@
 (function () {
   "use strict";
   var extensionContext = window.__C4143_EXTENSION__ || null;
-  var isDashboardEntry = !!extensionContext || location.hash.indexOf("dvdash") >= 0 ||
-    /^\/_apis\/projects\/?$/i.test(location.pathname);
+  var isDashboardEntry = !!extensionContext || location.hash.toLowerCase().indexOf("crdv41qual") >= 0;
   if (!isDashboardEntry) return;
   var D = {};
   D.CFG = {"org":"https://azurecsi.visualstudio.com","orgName":"azurecsi","project":"Dev","sourceType":"testPlan","planId":2783433,"suiteId":3942624,"queryId":"","queryUrl":"https://azurecsi.visualstudio.com/Dev/_testPlans/charts?planId=2783433&suiteId=3942624","testResultDays":28};
