@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         C4143 CRDv4.1 Qual Test Status Dashboard
 // @namespace    local.ado.dvscale.dashboard
-// @version      1.11.2
+// @version      1.11.3
 // @description  Adds a multi-project Query selector, real Test Results, XLSX exports, query-scoped snapshots, and Extension support.
 // @homepageURL  https://github.com/brianlin-19780816/ADO-Test-state-monitoring-C4143-CRDv4.1-Qual
 // @supportURL   https://github.com/brianlin-19780816/ADO-Test-state-monitoring-C4143-CRDv4.1-Qual/issues
@@ -881,6 +881,13 @@
     return s;
   };
   D.stacked = function (labels, perRack, states) {
+    function shortSuiteLabel(label, index) {
+      var parts = String(label || '').split(/[_\s-]+/).filter(Boolean);
+      var family = parts[0] || ('Suite ' + (index + 1));
+      var config = parts.filter(function (part) { return /^(LM|MM|HH)$/i.test(part); })[0] || '';
+      var shortLabel = config ? (family + ' ' + config.toUpperCase()) : ('Suite ' + (index + 1));
+      return shortLabel.length > 14 ? ('Suite ' + (index + 1)) : shortLabel;
+    }
     var W = 460, H = 300, L = 40, B = 40, T = 14, Rp = 12;
     var s = D.svg('svg', { viewBox: '0 0 ' + W + ' ' + H, width: '100%', height: '100%', preserveAspectRatio: 'xMidYMid meet' });
     var totals = perRack.map(function (m) { return D.sum(m); });
@@ -904,7 +911,9 @@
       });
       var tv = D.svg('text', { x: x + bw / 2, y: T + ph - ph * totals[i] / max - 5, fill: '#e2e8f0', 'text-anchor': 'middle', 'font-size': '11', 'font-weight': '700' });
       tv.textContent = totals[i] || ''; s.appendChild(tv);
-      var lt = D.svg('text', { x: x + bw / 2, y: T + ph + 16, fill: '#9fb3d0', 'text-anchor': 'middle', 'font-size': '10' }); lt.textContent = lab; s.appendChild(lt);
+      var lt = D.svg('text', { x: x + bw / 2, y: T + ph + 16, fill: '#9fb3d0', 'text-anchor': 'middle', 'font-size': '10', 'aria-label': lab });
+      lt.textContent = shortSuiteLabel(lab, i);
+      var labelTitle = D.svg('title'); labelTitle.textContent = lab; lt.appendChild(labelTitle); s.appendChild(lt);
     });
     return s;
   };
